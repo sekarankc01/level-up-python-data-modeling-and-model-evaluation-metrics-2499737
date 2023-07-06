@@ -10,7 +10,7 @@ os.chdir(r'C:/Users/sekar/OneDrive/Documents/GitHub/level-up-python-data-modelin
 print(os.getcwd())
 X_train_scaled, X_test_scaled, y_train, y_test = load(r'./data/model_data.joblib'
   )
-print(" x train ", X_train_scaled, "y train ", y_train, " y test " y_test)
+print(" x train ", X_train_scaled, "y train ", y_train, " y test ", y_test)
 svc_params = {
   'C': np.linspace(.1, 5, 3), 
   'kernel': ['linear', 'rbf']
@@ -21,15 +21,15 @@ grid_search = GridSearchCV(
   param_grid=svc_params
   )
   
-grid_search.fit(X_train_scaled, y_train[:,0])
+grid_search.fit(X_train_scaled, y_train)
 
 pd.DataFrame(grid_search.cv_results_)
 
 grid_predictions = grid_search.predict(X_test_scaled)
 
-balanced_accuracy_score(y_test[:,0], grid_predictions)
-matthews_corrcoef(y_test[:,0], grid_predictions)
-auc = roc_auc_score(y_test[:,0], grid_search.predict_proba(X_test_scaled)[:, 1])
+print("balanced_accuracy_score ",balanced_accuracy_score(y_test, grid_predictions))
+print("matthews_corrcoef ",matthews_corrcoef(y_test, grid_predictions))
+auc = roc_auc_score(y_test, grid_search.predict_proba(X_test_scaled))
 
 random_search = RandomizedSearchCV(
   estimator=svm.SVC(),
@@ -46,4 +46,5 @@ random_predictions = random_search.predict(X_test_scaled)
 
 balanced_accuracy_score(y_test, random_predictions)
 matthews_corrcoef(y_test, random_predictions)
-auc = roc_auc_score(y_test, random_search.predict_proba(X_test_scaled)[:, 1])
+auc = roc_auc_score(y_test, random_search.predict_proba(X_test_scaled))
+print("auc  = ", auc)

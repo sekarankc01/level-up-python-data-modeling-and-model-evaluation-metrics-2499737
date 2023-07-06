@@ -1,4 +1,5 @@
 import numpy as np
+import os
 import pandas as pd
 from sklearn import linear_model
 from sklearn.experimental import enable_iterative_imputer
@@ -7,9 +8,8 @@ from sklearn.metrics import mean_squared_error, mean_absolute_error
 from sklearn.model_selection import cross_val_score
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
-
-work_data = pd.read_csv(
-  "/workspaces/level-up-python-data-modeling-and-model-evaluation-metrics-2499737/data/level_up_data.csv"
+os.chdir(r'C:/Users/sekar/OneDrive/Documents/GitHub/level-up-python-data-modeling-and-model-evaluation-metrics-2499737/')
+work_data = pd.read_csv(r"./data/level_up_data.csv"
   )
 
 encode_cats = pd.get_dummies(work_data[{'department'}])

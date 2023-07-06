@@ -38,12 +38,12 @@ imp_mean = IterativeImputer(random_state=1001)
 
 imputed_data = imp_mean.fit_transform(predictors)
 
-#smote_enn = SMOTEENN(random_state=1001)
+smote_enn = SMOTEENN(random_state=1001)
 
-#balanced_data, balanced_outcome = smote_enn.fit_resample(imputed_data, outcome)  
+balanced_data, balanced_outcome = smote_enn.fit_resample(imputed_data, outcome)  
 
 X_train, X_test, y_train, y_test = train_test_split(
-    imputed_data, imputed_data, test_size=0.3, random_state=1001
+    balanced_data, balanced_outcome, test_size=0.3, random_state=1001
     )
 
 X_train_scaler = StandardScaler().fit(X_train)
