@@ -25,4 +25,5 @@ f_beta = (1 + beta**2) * ((precision * recall) / ((beta**2 * precision) + recall
 
 mcc = ((TP * TN) - (FP * FN)) / sqrt((TP + FP) * (TP + FN) * (TN + FP) * (TN + FN))
 
-f1, f_beta, mcc = print()
+# = print()
+print("f1, f_beta, mcc ",f1, f_beta, mcc)

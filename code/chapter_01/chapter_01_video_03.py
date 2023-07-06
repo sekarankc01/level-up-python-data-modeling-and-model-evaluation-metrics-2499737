@@ -4,9 +4,7 @@ import matplotlib.pyplot as plt
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import roc_auc_score, roc_curve, auc
 
-work_data = pd.read_csv(
-  "/workspaces/level-up-python-data-modeling-and-model-evaluation-metrics-2499737/data/level_up_data.csv"
-  )
+work_data = pd.read_csv('C:\\Users\\sekar\\OneDrive\\Documents\\GitHub\\level-up-python-data-modeling-and-model-evaluation-metrics-2499737\\data\\level_up_data.csv')
 
 y = work_data['separatedNY']
 
@@ -21,8 +19,9 @@ simple_logistic = LogisticRegression(solver="liblinear", random_state=1001)
 simple_logistic.fit(X, y)
 
 predicted_probs = simple_logistic.predict_proba(X)[:, 1]
-roc_auc_score(y, predicted_probs)
-
+ps = roc_auc_score(y, predicted_probs)
+print("Predicted Score ", ps)
 # Don't do this! ROC can only deal with probability values!
 predicted_class = simple_logistic.predict(X)
-roc_auc_score(y, predicted_class)
+pc = roc_auc_score(y, predicted_class)
+print("Predicted Class ", pc)

@@ -13,4 +13,4 @@ specificity = TN / (TN + FP)
 
 balanced_accuracy = (sensitivity + specificity) / 2
 
-balanced_accuracy
+print("balanced accuracy ",balanced_accuracy)
