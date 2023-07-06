@@ -1,3 +1,4 @@
+
 from collections import Counter
 from imblearn.over_sampling import SMOTE
 from imblearn.combine import SMOTEENN, SMOTETomek
@@ -5,7 +6,7 @@ import numpy as np
 import pandas as pd
 
 work_data = pd.read_csv(
-  "/workspaces/level-up-python-data-modeling-and-model-evaluation-metrics-2499737/data/level_up_data.csv"
+  "../data/level_up_data.csv"
   )
 
 encode_cats = pd.get_dummies(work_data[{'department'}])

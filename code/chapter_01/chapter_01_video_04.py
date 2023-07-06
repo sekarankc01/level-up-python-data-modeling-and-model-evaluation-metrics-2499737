@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 
-regression_data = pd.read_csv('/Users/sethberry/Documents/level-up-python-data-modeling-and-model-evaluation-metrics-2499737/data/regression_output.csv')
+regression_data = pd.read_csv(r'C:\Users\sekar\OneDrive\Documents\GitHub\level-up-python-data-modeling-and-model-evaluation-metrics-2499737/data/regression_output.csv')
 
 regression_data['absolute_difference'] = abs(regression_data['actual'] - 
   regression_data['predicted'])
@@ -27,4 +27,5 @@ for i in range(row_count):
   
 mae = mae_sum / row_count
 rmse = np.sqrt(rmse_sum / row_count)
+print(f'{"Root mean Square "}{rmse}')
 

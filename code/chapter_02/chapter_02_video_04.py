@@ -9,11 +9,20 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 
-work_data = pd.read_csv(
-  "/workspaces/level-up-python-data-modeling-and-model-evaluation-metrics-2499737/data/level_up_data.csv"
-  )
 
-work_data = work_data.sample(frac = .1)
+
+# work_data = pd.read_csv(
+#   "/workspaces/level-up-python-data-modeling-and-model-evaluation-metrics-2499737/data/level_up_data.csv"
+#   )
+work_data = pd.read_csv(r"C:\Users\sekar\OneDrive\Documents\GitHub\level-up-python-data-modeling-and-model-evaluation-metrics-2499737\data\level_up_data.csv")
+ 
+print("type = ", type(work_data))
+print(work_data.head())
+work_data = work_data.sample(frac = 0.1)
+#df is your dataframe
+#frac is percentage of data to sample
+#0.2 is 20 percent
+
 
 encode_cats = pd.get_dummies(work_data['department'], prefix='department')
 
@@ -29,12 +38,12 @@ imp_mean = IterativeImputer(random_state=1001)
 
 imputed_data = imp_mean.fit_transform(predictors)
 
-smote_enn = SMOTEENN(random_state=1001)
+#smote_enn = SMOTEENN(random_state=1001)
 
-balanced_data, balanced_outcome = smote_enn.fit_resample(imputed_data, outcome)  
+#balanced_data, balanced_outcome = smote_enn.fit_resample(imputed_data, outcome)  
 
 X_train, X_test, y_train, y_test = train_test_split(
-    balanced_data, balanced_outcome, test_size=0.3, random_state=1001
+    imputed_data, imputed_data, test_size=0.3, random_state=1001
     )
 
 X_train_scaler = StandardScaler().fit(X_train)
@@ -47,5 +56,5 @@ X_test_scaled = X_test_scaler.transform(X_test)
 
 dump(
   [X_train_scaled, X_test_scaled, y_train, y_test], 
-  '/workspaces/level-up-python-data-modeling-and-model-evaluation-metrics-2499737/data/model_data.joblib'
+  r'C:\Users\sekar\OneDrive\Documents\GitHub\level-up-python-data-modeling-and-model-evaluation-metrics-2499737/data/model_data.joblib'
   )
