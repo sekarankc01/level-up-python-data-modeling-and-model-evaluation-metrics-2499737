@@ -15,3 +15,4 @@ imp_mean = IterativeImputer(random_state=0)
 imputed_data = imp_mean.fit_transform(work_data.to_numpy())
 
 pd.DataFrame(imputed_data).info()
+print("word data = ", work_data.head())
